@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Portfolio</title>
+    <style>
+        /* Add your CSS here */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f3f3f3;
+        }
+        header {
+            background-color: #333;
+            color: #fff;
+            padding: 10px 20px;
+            text-align: center;
+        }
+        .tab-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+        }
+        .tab-links {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 10px;
+        }
+        .tab-links button {
+            background-color: #444;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            margin: 0 5px;
+            cursor: pointer;
+        }
+        .tab-links button.active-link {
+            background-color: #008cba;
+        }
+        .tab-contents {
+            display: none;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 80%;
+            max-width: 600px;
+        }
+        .tab-contents.active-tab {
+            display: block;
+        }
+        .contact-form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .contact-form input,
+        .contact-form textarea {
+            width: 100%;
+            max-width: 500px;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .contact-form button {
+            padding: 10px 20px;
+            background-color: #008cba;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>My Portfolio</h1>
+    </header>
+
+    <div class="tab-container">
+        <div class="tab-links">
+            <button class="tab-links active-link" onclick="openTab('about')">About</button>
+            <button class="tab-links" onclick="openTab('projects')">Projects</button>
+            <button class="tab-links" onclick="openTab('contact')">Contact</button>
+        </div>
+
+        <div id="about" class="tab-contents active-tab">
+            <h2>About Me</h2>
+            <p>Welcome to my portfolio! I am a full-stack developer with expertise in React, Node.js, and more.</p>
+        </div>
+        <div id="projects" class="tab-contents">
+            <h2>My Projects</h2>
+            <ul>
+                <li>Project 1: Gemini Clone App</li>
+                <li>Project 2: Portfolio Website</li>
+                <li>Project 3: AI Chatbot using Azure</li>
+            </ul>
+        </div>
+        <div id="contact" class="tab-contents">
+            <h2>Contact Me</h2>
+            <form id="contact-form" class="contact-form">
+                <input type="text" id="name" placeholder="Your Name" required>
+                <input type="email" id="email" placeholder="Your Email" required>
+                <textarea id="message" placeholder="Your Message" required></textarea>
+                <button type="submit">Send Message</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // JavaScript for tab functionality
+        const tabLinks = document.querySelectorAll(".tab-links");
+        const tabContents = document.querySelectorAll(".tab-contents");
+
+        function openTab(tabName) {
+            tabLinks.forEach((link) => {
+                link.classList.remove("active-link");
+            });
+            tabContents.forEach((content) => {
+                content.classList.remove("active-tab");
+            });
+
+            event.currentTarget.classList.add("active-link");
+            document.getElementById(tabName).classList.add("active-tab");
+        }
+
+        // Form validation and submission
+        const contactForm = document.getElementById("contact-form");
+        contactForm.addEventListener("submit", (e) => {
+            e.preventDefault();
+            const name = document.getElementById("name").value;
+            const email = document.getElementById("email").value;
+            const message = document.getElementById("message").value;
+
+            // Simple form validation
+            if (name === "" || email === "" || message === "") {
+                alert("All fields are required!");
+                return;
+            }
+
+            alert(`Thank you, ${name}. Your message has been sent!`);
+            contactForm.reset();
+        });
+    </script>
+</body>
+</html>
